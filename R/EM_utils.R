@@ -391,8 +391,8 @@ prep_kappa2_optim <- function(spde, mu, phi, P, vh) {
 #' @importFrom methods as
 #' @keywords internal
 create_listRcpp <- function(spde) {
-  Cmat <- as(spde$M0,"dgCMatrix")
-  Gmat <- as((spde$M1 + Matrix::t(spde$M1)) / 2,"CsparseMatrix")
+  Cmat <- as(as(spde$M0, "generalMatrix"), "CsparseMatrix")
+  Gmat <- as(as((spde$M1 + Matrix::t(spde$M1)) / 2, "generalMatrix"), "CsparseMatrix")
   GtCinvG <- as(spde$M2,"CsparseMatrix")
   out <- list(Cmat = Cmat,
               Gmat = Gmat,
